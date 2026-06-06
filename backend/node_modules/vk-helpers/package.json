@@ -1,0 +1,43 @@
+{
+  "name": "vk-helpers",
+  "version": "1.0.3",
+  "description": "Helpers and utilities for creating VK mini apps",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest"
+  },
+  "keywords": [
+    "vk",
+    "vkontakte",
+    "mini-app",
+    "helpers",
+    "utils"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^22.13.10",
+    "rollup": "^3.10.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@vkontakte/vk-bridge": "^2.15.5"
+  }
+}
