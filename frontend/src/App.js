@@ -262,7 +262,6 @@ function TeamRoles({ initiative, currentUser, teamRoles, onJoinRole, onCloseRole
         ))}
       </div>
       
-      {/* Кнопка "Хочу в команду" - только в ленте, не в профиле */}
       {isInFeed && !isAuthor && !allRolesFilled && (
         <Button 
           size="s" 
@@ -282,7 +281,6 @@ function TeamRoles({ initiative, currentUser, teamRoles, onJoinRole, onCloseRole
         </Button>
       )}
       
-      {/* Управление ролями - ТОЛЬКО ДЛЯ ПРОФИЛЯ (isInFeed = false) и только для автора */}
       {!isInFeed && isAuthor && (
         <div style={{ marginTop: '12px' }}>
           <Text style={{ fontSize: '13px', marginBottom: '8px' }}>Управление ролями (видимость в ленте):</Text>
@@ -793,9 +791,14 @@ function App() {
       try {
         const response = await axios.get(`${API_URL}/votes/user/${user.id}`);
         const votesMap = {};
-        response.data.forEach(vote => {
-          votesMap[vote.initiative_id] = vote.vote_value;
-        });
+        // Исправление: проверяем, что response.data — это массив
+        if (Array.isArray(response.data)) {
+          response.data.forEach(vote => {
+            votesMap[vote.initiative_id] = vote.vote_value;
+          });
+        } else {
+          console.log('Данные голосов не являются массивом:', response.data);
+        }
         setUserVotes(votesMap);
       } catch (error) {
         console.error('Ошибка загрузки голосов пользователя:', error);
