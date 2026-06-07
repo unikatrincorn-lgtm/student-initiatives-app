@@ -4,17 +4,17 @@ const { Pool } = require('pg');
 const { checkRequestSignature } = require('vk-helpers');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const VK_APP_SECRET = 'oY4k3T67POGYEK9LtSVb';
 const VK_APP_ID = 54625831;
 
 const pool = new Pool({
   user: 'postgres',
-  password: 'postgres',
-  host: 'localhost',
-  port: 5434,
-  database: 'initiatives_db',
+  password: 'KarinaForever2018!',  // ← ДОЛЖЕН БЫТЬ ВАШ ПАРОЛЬ!
+  host: 'db.vqlqclnyxzufhralugee.supabase.co',
+  port: 5432,
+  database: 'postgres',
 });
 
 app.use(cors());
